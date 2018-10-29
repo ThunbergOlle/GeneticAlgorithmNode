@@ -19,7 +19,6 @@ module.exports = class DNA {
     }
     generateSentence(){
         this.sentence = this.genes.join("");
-        console.log(this.genes);
 
     }
     calculateFitness(){
@@ -48,7 +47,6 @@ module.exports = class DNA {
         }
         child.generateSentence();
         child.calculateFitness();
-        console.log(child.fitness);
         return child;
     }
     mutate(){
