@@ -19,8 +19,12 @@ module.exports = class DNA {
     }
     generateSentence(){
         this.sentence = this.genes.join("");
+        console.log(this.genes);
+
     }
     calculateFitness(){
+        this.fitness = 0;
+
         //Make sentence into array
         for(let i = 0; i < this.target.length; i++){
             for(let x = 0; x < this.genes.length; x++){
@@ -43,6 +47,8 @@ module.exports = class DNA {
             
         }
         child.generateSentence();
+        child.calculateFitness();
+        console.log(child.fitness);
         return child;
     }
     mutate(){

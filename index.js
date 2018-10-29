@@ -5,7 +5,7 @@ console.log("Genetic Algorithm");
 let sentence = "Tjena";
 let sentenceArray = [];
 let num = 200;
-const population = 10;
+const population = 200;
 
 let generation = [];
 for (let i = 0; i < sentence.length; i++) {
@@ -13,7 +13,7 @@ for (let i = 0; i < sentence.length; i++) {
 }
 initialization = (sentence, population) => {
   for (let i = 0; i < population; i++) {
-    generation.push(new DNA(10, sentenceArray));
+    generation.push(new DNA(5, sentenceArray));
   }
 };
 
@@ -26,7 +26,6 @@ selection = () => {
 
   for (let i = 0; i < generation.length; i++) {
     if (generation[i].fitness > max_Fitness) {
-        console.log(generation[i].sentence);
       max_Fitness = generation[i].fitness;
     }
 
@@ -50,16 +49,18 @@ selection = () => {
 
     // CrossOver
     let child = parentA.crossOver(parentB, sentenceArray);
-    return;
   }
 };
 draw = () => {
   initialization("Tjena", population);
   selection();
+    for(let i = 0; i < generation.length; i++){
+        if(generation[i].sentence === sentence){
+            console.log(generation[i].sentence);
+            return;   
+        }
 
-  if (1 > 0) {
-    console.log(generation.length);
+    }
     draw();
-  }
 };
 draw();
