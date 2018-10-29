@@ -1,10 +1,10 @@
 const DNA = require('./DNA.js');
 let mutationRisk = 0.01;
-let totalPopulation = 100;
+let totalPopulation = 400;
 let population;
-
+let generations = 0;
 let matingPool;
-let targetPhrase = "Tjena";
+let targetPhrase = "skrr";
 let finished = false;
 
 setup = () => {
@@ -21,7 +21,7 @@ draw = () => {
     console.log("DRAW");
     for(let i = 0; i < population.length; i++){
         population[i].calcFitness(targetPhrase);
-        console.log(population[i]);
+        console.log("Progress: ", population[i].fitness, "%");
     }
     
     
@@ -35,6 +35,7 @@ draw = () => {
     }
 
     //PRE CROSSING THE NEXT GENERATIOn
+    generations++;
     for(let i = 0; i < population.length; i++){
         let pA = Math.floor(Math.random() * matingPool.length);
         let pB = Math.floor(Math.random() * matingPool.length);
@@ -46,7 +47,7 @@ draw = () => {
         population[i] = child;
 
         if(child.getSentence() === targetPhrase){
-            console.log(population[i]);
+            console.log("The final result was: ", population[i], " in the generation ",generations);
             console.log("FINISHED!")
             return;
         }
