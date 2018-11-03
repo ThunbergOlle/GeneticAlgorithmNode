@@ -4,7 +4,7 @@ let totalPopulation = 400;
 let population;
 let generations = 0;
 let matingPool;
-let targetPhrase = "skrr";
+let targetPhrase = "Dagen och natten kommer";
 let finished = false;
 
 setup = () => {

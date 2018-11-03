@@ -1,4 +1,4 @@
-let totalPopulation = 4;
+let totalPopulation = 20;
 let generations = 0;
 let mutationRisk = 0.01;
 let population;
@@ -43,14 +43,15 @@ function draw() {
             if(population[i].fitness > bestFitness) bestFitness = population[i].fitness;
         }
         textFont("Courier");
-        display.html("Avg fitness: " + totaltFitness / population.length +  "   Best fitness: " + bestFitness + "   Generation: " + generations);
+        display.html("Avg fitness: " + totaltFitness / population.length +  "   Best fitness: " + bestFitness + "   Generation: " + generations + " Everyone who has lived: " + everyoneWhoHasLived);
         matingPool = [];
         for (let i = 0; i < population.length; i++) {
-            let element = Math.floor(population[i].fitness / 100);
+            let element = Math.floor(population[i].fitness);
             for (let x = 0; x < element; x++) {
                 matingPool.push(population[i]);
             }
         }
+        console.log(matingPool);
 
         generations++;
 
@@ -64,7 +65,6 @@ function draw() {
             child.mutate(mutationRisk);
             population[i] = child;
             everyoneWhoHasLived++;
-            console.log(dist(cordsTarget[0], cordsTarget[1], child.x, child.y));
             if (dist(cordsTarget[0], cordsTarget[1], child.x, child.y) < 5) {
                 console.log("Everyone who has lived: " + everyoneWhoHasLived);
                 return finished = true;

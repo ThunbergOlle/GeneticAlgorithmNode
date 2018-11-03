@@ -30,13 +30,16 @@ class DNA {
         for(let i = 0; i < d; i++){
             if(i < d) score++;
         }
+        score = score / 100;
         this.fitness = Math.floor(score);
 
     }
     crossOver(partner) {
         let Child = new DNA(2);
-        Child.genes[0] = partner.genes[0];
-        Child.genes[1] = this.genes[0];
+        Child.genes[0] = partner.genes[Math.floor(Math.random())];
+        Child.genes[1] = this.genes[Math.floor(Math.random())];
+        console.log("Partner 1 genes" + partner.genes, "    Partner 2 genes "+ this.genes);
+        console.log("Child genes: " + Child.genes);
         // let midPoint = this.genes.length / 2;
         // for (let i = 0; i < this.genes.length; i++) {
         //     if (i < midPoint) Child.genes[i] = this.genes[i];
@@ -48,6 +51,7 @@ class DNA {
     mutate(rate) {
         for (let i = 0; i < this.genes.length; i++) {
             if (Math.random() < rate) {
+                console.log("A CELL WAS MUTATED");
                 this.genes[i] = generateRandom();
             }
         }
