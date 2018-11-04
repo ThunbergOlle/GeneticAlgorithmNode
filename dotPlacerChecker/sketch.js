@@ -39,17 +39,25 @@ function draw() {
 
     fill(200);
     rect(cordsTarget[0], cordsTarget[1], 20, 20);
-    for(let i = 0; i < population.length; i++){
-        fill(255);
-        rect(population[i][0], population[i][1], 10, 10);
-        if(population[i][0] === 200 && population[i][1] === 200)console.log(population[i]);
-        else population[i] = [generateRandom(), generateRandom()];
-        everyoneWhoHasLived++;
- 
+    if(finished === false){
+        for(let i = 0; i < population.length; i++){
+            fill(255);
+            rect(population[i][0], population[i][1], 10, 10);
+            let d = dist(population[i][0], population[i][1], 200, 200);
+            console.log(d);
+            if(d < 5){
+                console.log(population[i]);
+                return finished = true;
+            } 
+            else population[i] = [generateRandom(), generateRandom()];
+            everyoneWhoHasLived++;
+     
+        }
+        generations++;
+        textFont("Courier");
+        display.html("Avg fitness: " + totaltFitness / population.length +  "   Everyone who has lived: " + everyoneWhoHasLived + "   Generation: " + generations);
+    
     }
-    generations++;
-    textFont("Courier");
-    display.html("Avg fitness: " + totaltFitness / population.length +  "   Everyone who has lived: " + everyoneWhoHasLived + "   Generation: " + generations);
 
    
 }

@@ -25,8 +25,6 @@ class DNA {
     calcFitness(cords) { // CALCULATE THE FITNESS
         let score = 0; //SETS UP SCORE VARIABLE
         let d  = dist(cords[0], cords[1], this.x, this.y);
-
-
         for(let i = 0; i < d; i++){
             if(i < d) score++;
         }
