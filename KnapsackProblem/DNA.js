@@ -1,14 +1,14 @@
 generateRandom = () => {
     let index = Math.floor(Math.random() * 12) + 1;
     let cost = 0;
-    if(index === 12) cost = 4;
-    if(index < 12) cost = 2;
-    if(index > 5 && index < 12) cost = 4;
-    if(index === 4) cost = 10;
-    if(index === 1) cost = 1;
-    if(index === 2) cost = 6;
-
-    let returnObj = {kg: index, cost: cost}
+    if(index === 12) cost = 13;
+    if(index < 12) cost = 22;
+    if(index > 5 && index < 12) cost = 23;
+    if(index === 4) cost = 25;
+    if(index === 1) cost = 21;
+    if(index === 2) cost = 14;
+    if(index === 3) cost = 27;
+    let returnObj = {kg: index, worth: cost}
     return returnObj;
 }
 module.exports = class DNA {
@@ -24,13 +24,13 @@ module.exports = class DNA {
     calcFitness(targetKG){
         let score = 0;
         let totalKG = 0;
-        let totalCost = 0;
+        let totalWorth = 0;
         for(let i = 0; i < this.genes.length; i++){
-            totalCost += this.genes[i].cost;
+            totalWorth += this.genes[i].worth;
             totalKG += this.genes[i].kg
         }
 
-        this.fitness = Math.floor(totalCost / totalKG * 10);
+        this.fitness = Math.floor((totalWorth - totalKG) / 10);
     }
     crossOver(partner){
         let Child = new DNA(this.genes.length);
@@ -40,7 +40,7 @@ module.exports = class DNA {
             if(i < midPoint) Child.genes[i] = this.genes[i];
             else Child.genes[i] = partner.genes[i];
         }
-        return Child;   
+        return Child;
     }
 
     mutate(rate){
