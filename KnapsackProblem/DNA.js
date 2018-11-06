@@ -3,6 +3,7 @@ generateRandom = () => {
     let cost = 0;
     if(index === 12) cost = 13;
     if(index < 12) cost = 22;
+    if(index === 8) cost = 29;
     if(index > 5 && index < 12) cost = 23;
     if(index === 4) cost = 25;
     if(index === 1) cost = 21;
@@ -15,7 +16,7 @@ module.exports = class DNA {
     constructor(num){
         this.genes = [];
         this.fitness = 0;
-
+        this.totalMutations = 0;
         for(let i = 0; i < num; i++){
             this.genes[i] = generateRandom();
         }
@@ -32,7 +33,7 @@ module.exports = class DNA {
         this.fitness = Math.floor((totalWorth - totalKG) / 10);
 
         for(let i = 0; i < totalKG; i++){
-            if(i > targetKG && this.fitness > 2) this.fitness -= 3;
+            if(i > targetKG && this.fitness > 2) this.fitness -= 4;
         }
 
     }
@@ -50,6 +51,7 @@ module.exports = class DNA {
     mutate(rate){
         for(let i = 0; i < this.genes.length; i++){
             if(Math.random() < rate){
+                this.totalMutations += 1;
                 this.genes[i] = generateRandom();
             }
         }
