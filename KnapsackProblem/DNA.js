@@ -29,8 +29,12 @@ module.exports = class DNA {
             totalWorth += this.genes[i].worth;
             totalKG += this.genes[i].kg
         }
-
         this.fitness = Math.floor((totalWorth - totalKG) / 10);
+
+        for(let i = 0; i < totalKG; i++){
+            if(i > targetKG && this.fitness > 2) this.fitness -= 3;
+        }
+
     }
     crossOver(partner){
         let Child = new DNA(this.genes.length);

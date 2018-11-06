@@ -5,7 +5,7 @@ let totalPopulation = 50;
 let population;
 let generations = 0;
 let matingPool;
-let targetKG = 15;
+let targetKG = 12;
 let finished = false;
 
 // VÄGER 35 KOSTAR 17
